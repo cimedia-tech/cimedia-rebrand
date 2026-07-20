@@ -1,0 +1,881 @@
+/* ── BRAND SANCTUM SYSTEM ────────────────────────────────────────────────────── */
+
+:root {
+  --bg-base: #01140f;
+  --bg-depth: #021f17;
+  --bg-glass: rgba(2, 31, 23, 0.6);
+  --gold-primary: #cfa840;
+  --gold-glow: #f2d184;
+  --gold-dark: #8c6a1e;
+  
+  --ink-bright: #ffffff;
+  --ink-medium: #d1d5db;
+  --ink-muted: #6b7280;
+  
+  --font-headings: 'Playfair Display', Georgia, serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  
+  --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-snappy: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ── BASE ELEMENTS ───────────────────────────────────────────────────────────── */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-base);
+  color: var(--ink-medium);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--bg-base);
+}
+
+h1, h2, h3, h4 {
+  color: var(--ink-bright);
+}
+
+.font-serif { font-family: var(--font-headings); }
+.font-mono { font-family: var(--font-mono); letter-spacing: 0.1em; font-size: 0.85rem;}
+
+.text-gold {
+  background: linear-gradient(135deg, var(--gold-primary), var(--gold-glow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.container-fluid {
+  max-width: 100%;
+  padding: 0 4rem;
+}
+
+.text-center { text-align: center; }
+.block { display: block; }
+.mt-4 { margin-top: 1rem; }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-depth);
+  border: 2px solid var(--bg-base);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-primary);
+}
+
+/* ── ETHERIAL CUSTOM CURSOR ──────────────────────────────────────────────────── */
+
+.custom-cursor {
+  width: 8px;
+  height: 8px;
+  background: var(--gold-glow);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s;
+}
+
+.custom-cursor-glow {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--gold-primary);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease-out;
+}
+
+/* Expand cursor on interactive hovers */
+.custom-cursor.active {
+  width: 24px;
+  height: 24px;
+  background: rgba(207, 168, 64, 0.2);
+  border: 1px solid var(--gold-glow);
+}
+.custom-cursor-glow.active {
+  width: 60px;
+  height: 60px;
+  border-color: var(--gold-glow);
+}
+
+/* ── HEADER / NAVIGATION ──────────────────────────────────────────────────────── */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: var(--bg-glass);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-b: 1px solid rgba(207, 168, 64, 0.05);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+}
+
+.logo-link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-main {
+  font-family: var(--font-headings);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--ink-bright);
+}
+
+.logo-sub {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  color: var(--gold-primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: var(--ink-medium);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  transition: var(--transition-snappy);
+}
+
+.nav-item:hover {
+  color: var(--gold-glow);
+}
+
+/* ── BUTTONS ─────────────────────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold-primary), var(--gold-glow));
+  color: var(--bg-base);
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 10px 20px -5px rgba(207, 168, 64, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px -5px rgba(207, 168, 64, 0.4);
+}
+
+.btn-outline {
+  border: 1px solid var(--gold-primary);
+  color: var(--gold-glow);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: rgba(207, 168, 64, 0.05);
+  transform: translateY(-3px);
+}
+
+.btn-glow {
+  border: 1px solid var(--gold-primary);
+  padding: 0.5rem 1.25rem;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(207, 168, 64, 0.1);
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 15px rgba(207, 168, 64, 0.3);
+  background: var(--gold-primary);
+  color: var(--bg-base) !important;
+}
+
+/* ── HERO PARALLAX CANOPY ────────────────────────────────────────────────────── */
+
+.hero-section {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.parallax-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%;
+  height: 120%;
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+  will-change: transform;
+}
+
+.hero-glow-radial {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(2, 31, 23, 0.4) 0%, var(--bg-base) 90%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.parallax-mid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-decorations .decor-circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(207, 168, 64, 0.1);
+  will-change: transform;
+}
+
+.circle-1 {
+  width: 400px;
+  height: 400px;
+  top: 10%;
+  right: 5%;
+}
+
+.circle-2 {
+  width: 250px;
+  height: 250px;
+  bottom: 15%;
+  left: 10%;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+  padding: 0 4rem;
+}
+
+.hero-pretitle {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--gold-primary);
+  margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-size: 4.5rem;
+  line-height: 1.1;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: var(--ink-medium);
+  margin-bottom: 3rem;
+  max-width: 600px;
+  opacity: 0.8;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-scroll-indicator span {
+  font-size: 0.65rem;
+  color: var(--ink-muted);
+}
+
+.scroll-arrow {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--gold-primary), transparent);
+  animation: scroll-line 2s infinite ease-in-out;
+}
+
+@keyframes scroll-line {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  50.1% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ── MANIFESTO CANOPY ────────────────────────────────────────────────────────── */
+
+.manifesto-section {
+  padding: 10rem 0;
+  background-color: var(--bg-base);
+  border-y: 1px solid rgba(207, 168, 64, 0.05);
+}
+
+.manifesto-text {
+  font-size: 2.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.manifesto-author {
+  margin-top: 3rem;
+  color: var(--gold-primary);
+  font-size: 0.8rem;
+}
+
+/* ── SERVICES SANCTUM ────────────────────────────────────────────────────────── */
+
+.services-section {
+  padding: 8rem 0;
+  background: var(--bg-depth);
+  position: relative;
+}
+
+.section-tag {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-primary);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--ink-muted);
+  max-width: 600px;
+  margin: 0 auto 5rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.service-card {
+  background: rgba(1, 20, 15, 0.5);
+  border: 1px solid rgba(207, 168, 64, 0.08);
+  border-radius: 8px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(207, 168, 64, 0.3);
+}
+
+.card-bg-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(207, 168, 64, 0.08) 0%, transparent 70%);
+  opacity: 0;
+  transition: var(--transition-smooth);
+}
+
+.service-card:hover .card-bg-glow {
+  opacity: 1;
+}
+
+.card-img-wrapper {
+  height: 200px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: var(--transition-smooth);
+}
+
+.service-card:hover .card-img {
+  transform: scale(1.1);
+}
+
+.card-number {
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  color: var(--ink-medium);
+  opacity: 0.75;
+  margin-bottom: 2rem;
+}
+
+.card-features {
+  font-size: 0.7rem;
+  color: var(--ink-muted);
+  list-style: none;
+}
+
+.card-features li {
+  margin-bottom: 0.5rem;
+}
+
+/* ── EXHIBIT CAROUSEL ────────────────────────────────────────────────────────── */
+
+.exhibit-section {
+  padding: 8rem 0;
+  background-color: var(--bg-base);
+}
+
+.exhibit-carousel {
+  display: flex;
+  gap: 2.5rem;
+  overflow-x: auto;
+  padding: 2rem 0;
+  cursor: grab;
+  scroll-snap-type: x mandatory;
+}
+
+.exhibit-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.exhibit-slide {
+  flex: 0 0 400px;
+  height: 500px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.slide-img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: var(--transition-smooth);
+}
+
+.slide-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2.5rem;
+  background: linear-gradient(to top, rgba(1, 20, 15, 0.9), transparent);
+  transform: translateZ(50px);
+}
+
+.slide-info h4 {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+/* ── PRINT SANCTUM (3D CARD PERSPECTIVES) ────────────────────────────────────── */
+
+.mockup-section {
+  padding: 8rem 0;
+  background-color: var(--bg-depth);
+}
+
+.mockup-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.card-3d-wrapper {
+  perspective: 1000px;
+  position: relative;
+}
+
+.card-3d {
+  width: 100%;
+  height: 550px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.card-3d-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  border: 1px solid rgba(207, 168, 64, 0.1);
+  overflow: hidden;
+}
+
+.card-3d-face.front {
+  background: var(--bg-base);
+}
+
+.mockup-poster-content, .mockup-flyer-content {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding: 3rem;
+}
+
+.poster-inner, .flyer-inner {
+  transform: translateZ(30px);
+  background: rgba(1, 20, 15, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(207, 168, 64, 0.2);
+  padding: 2rem;
+  width: 100%;
+  border-radius: 6px;
+}
+
+.poster-inner span, .flyer-inner span {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+}
+
+.poster-inner h3, .flyer-inner h4 {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+}
+
+.card-3d-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 5;
+  border-radius: 12px;
+}
+
+.card-3d-shadow {
+  position: absolute;
+  bottom: -20px;
+  left: 5%;
+  width: 90%;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  filter: blur(15px);
+  border-radius: 50%;
+  z-index: -1;
+  transition: var(--transition-smooth);
+}
+
+.card-3d-wrapper:hover .card-3d-shadow {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+/* ── CONTACT SANCTUARY ────────────────────────────────────────────────────────── */
+
+.contact-section {
+  padding: 10rem 0;
+  background-color: var(--bg-base);
+}
+
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.contact-info h2 {
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+
+.contact-info p {
+  font-size: 1.1rem;
+  color: var(--ink-medium);
+  opacity: 0.8;
+  margin-bottom: 4rem;
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.info-item span {
+  font-size: 0.75rem;
+}
+
+.info-item p {
+  font-size: 1.2rem;
+  color: var(--ink-bright);
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  opacity: 1;
+}
+
+/* Glassmorphic Form */
+.glass-form {
+  background: rgba(2, 31, 23, 0.2);
+  border: 1px solid rgba(207, 168, 64, 0.08);
+  border-radius: 12px;
+  padding: 3.5rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-group label {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+  background: rgba(1, 20, 15, 0.6);
+  border: 1px solid rgba(207, 168, 64, 0.1);
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
+  color: var(--ink-bright);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+  transition: var(--transition-snappy);
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 10px rgba(207, 168, 64, 0.15);
+}
+
+.btn-block {
+  width: 100%;
+  border: none;
+}
+
+.form-success {
+  display: none;
+  padding: 3rem 0;
+}
+
+.success-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(207, 168, 64, 0.1);
+  border: 1px solid var(--gold-primary);
+  color: var(--gold-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 2rem;
+}
+
+.form-success p {
+  margin-top: 1rem;
+  color: var(--ink-muted);
+}
+
+/* ── ANIMATION TRIGGERS ──────────────────────────────────────────────────────── */
+
+.animate-on-load {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fade-up 1.2s forwards cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-pretitle.animate-on-load { animation-delay: 0.2s; }
+.hero-title.animate-on-load { animation-delay: 0.4s; }
+.hero-subtitle.animate-on-load { animation-delay: 0.6s; }
+.hero-cta.animate-on-load { animation-delay: 0.8s; }
+
+@keyframes fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── FOOTER ──────────────────────────────────────────────────────────────────── */
+
+.footer {
+  padding: 5rem 0;
+  border-top: 1px solid rgba(207, 168, 64, 0.05);
+  background: var(--bg-base);
+  color: var(--ink-muted);
+  font-size: 0.7rem;
+}
+
+/* ── RESPONSIVE ADAPTABILITY ────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .mockup-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+    gap: 5rem;
+  }
+  .hero-title {
+    font-size: 3rem;
+  }
+  .manifesto-text {
+    font-size: 1.8rem;
+  }
+  .container-fluid {
+    padding: 0 2rem;
+  }
+}
+
+/* ── IMAGE ASSET MAPPINGS ────────────────────────────────────────────────────── */
+
+#hero-bg {
+  background-image: url('./assets/hero_bg.png');
+}
+
+#img-photography {
+  background-image: url('./assets/photo_service.png');
+}
+
+#img-books {
+  background-image: url('./assets/book_service.png');
+}
+
+#img-graphics {
+  background-image: url('./assets/graphics_service.png');
+}
+
+#img-exhibit-1 {
+  background-image: url('./assets/exhibit1.png');
+}
+
+#img-exhibit-2 {
+  background-image: url('./assets/exhibit2.png');
+}
+
+#img-exhibit-3 {
+  background-image: url('./assets/exhibit3.png');
+}
+
+#img-exhibit-4 {
+  background-image: url('./assets/exhibit4.png');
+}
+
+#img-poster-mockup {
+  background-image: url('./assets/poster_mockup.png');
+}
+
+#img-flyer-mockup {
+  background-image: url('./assets/flyer_mockup.png');
+}
+
