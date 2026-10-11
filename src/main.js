@@ -120,32 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ── 5. BRAND SANCTUM FORM SUBMISSION ──────────────────────────────────────────
-  const bookingForm = document.getElementById('booking-form');
-  const successMessage = document.getElementById('form-success-message');
-
-  if (bookingForm && successMessage) {
-    bookingForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      // Transition out form and transition in success brief
-      bookingForm.style.transition = 'opacity 0.4s ease';
-      bookingForm.style.opacity = '0';
-      
-      setTimeout(() => {
-        bookingForm.style.display = 'none';
-        successMessage.style.display = 'block';
-        successMessage.style.opacity = '0';
-        successMessage.style.transition = 'opacity 0.6s ease';
-        
-        // Trigger repaint to enable transition
-        successMessage.offsetHeight;
-        successMessage.style.opacity = '1';
-      }, 400);
-    });
-  }
-
-  // ── 6. CAROUSEL DRAG NAVIGATION ──────────────────────────────────────────────
+  // ── 5. CAROUSEL DRAG NAVIGATION ──────────────────────────────────────────────
   const carousel = document.getElementById('exhibit-carousel');
   let isDown = false;
   let startX;

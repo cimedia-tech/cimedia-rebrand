@@ -711,6 +711,20 @@ h1, h2, h3, h4 {
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
+.booking-handoff {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.booking-handoff h3,
+.booking-handoff p {
+  margin: 0;
+}
+
+.booking-handoff > p {
+  color: var(--ink-medium);
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -834,6 +848,52 @@ h1, h2, h3, h4 {
   }
   .container-fluid {
     padding: 0 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar-container {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding: 0.9rem 1rem;
+  }
+
+  .logo-main {
+    font-size: 1.2rem;
+  }
+
+  .logo-sub {
+    font-size: 0.5rem;
+  }
+
+  .nav-links {
+    gap: 0.4rem;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .nav-item {
+    font-size: 0.58rem;
+    letter-spacing: 0.04em;
+  }
+
+  .btn-glow {
+    padding: 0.35rem 0.6rem;
+  }
+
+  .hero-content {
+    padding: 0 1.25rem;
+  }
+
+  .container,
+  .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .glass-form {
+    padding: 1.5rem;
   }
 }
 
